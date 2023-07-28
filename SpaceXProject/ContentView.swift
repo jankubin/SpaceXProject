@@ -51,7 +51,7 @@ struct LaunchRowView: View {
     
     var body: some View {
         HStack {
-            Image(space.links.small)
+            Image(space.links.patch?.small ?? "")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 40, height: 40)

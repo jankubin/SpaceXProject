@@ -12,7 +12,11 @@ struct Response: Hashable, Codable {
     let details: String?
     let dateLocal: String
     let flightNumber: Int
-    let links: Patch
+    let links: Links
+}
+
+struct Links: Hashable, Codable {
+    let patch: Patch?
 }
 
 struct Patch: Hashable, Codable {
@@ -55,7 +59,7 @@ class ViewModel: ObservableObject {
             spaceXLaunch.sort { $0.flightNumber < $1.flightNumber }
         case .date:
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
             spaceXLaunch.sort { dateFormatter.date(from: $0.dateLocal)! < dateFormatter.date(from: $1.dateLocal)! }
         }
     }
