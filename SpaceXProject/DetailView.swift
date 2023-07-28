@@ -13,10 +13,12 @@ struct DetailView: View {
     
     var body: some View {
         VStack{
-            Image(launch.links.large)
-                .resizable()
-                .scaledToFit()
-                .frame(height: 100)
+            if let large = launch.links.patch.large {
+                Image(large)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 100)
+            }
             Text(launch.name)
                 .font(.title)
                 .padding([.bottom, .top])
@@ -34,7 +36,15 @@ struct DetailView: View {
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
         // For the preview, you can create a sample launch to pass as a parameter
-        let sampleLaunch = Response(name: "Sample Name", details: "Sample Details", dateLocal: "Some date", flightNumber: 123, links: Patch(small: "sample_url", large: "sample_url"))
+        let sampleLaunch = Response(
+            name: "Sample Name",
+            details: "Sample Details",
+            dateLocal: "Some date",
+            flightNumber: 123,
+            links: Links(
+                patch: Patch(small: "sample_url", large: "sample_url")
+            )
+        )
         DetailView(launch: sampleLaunch)
     }
 }

@@ -51,10 +51,12 @@ struct LaunchRowView: View {
     
     var body: some View {
         HStack {
-            Image(space.links.small)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 40, height: 40)
+            if let small = space.links.patch.small {
+                Image(small)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
+            }
             VStack(alignment: .leading) {
                 Text(space.name)
                     .font(.headline.bold())

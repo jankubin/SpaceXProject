@@ -12,12 +12,16 @@ struct Response: Hashable, Codable {
     let details: String?
     let dateLocal: String
     let flightNumber: Int
-    let links: Patch
+    let links: Links
+}
+
+struct Links: Hashable, Codable {
+    let patch: Patch
 }
 
 struct Patch: Hashable, Codable {
-    let small: String
-    let large: String
+    let small: String?
+    let large: String?
 }
 
 class ViewModel: ObservableObject {
