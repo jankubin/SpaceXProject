@@ -12,21 +12,27 @@ struct DetailView: View {
     let launch: Response
     
     var body: some View {
-        VStack{
-            Image(launch.links.patch?.large ?? "")
-                .resizable()
-                .scaledToFit()
-                .frame(height: 100)
-            Text(launch.name)
-                .font(.title)
-                .padding([.bottom, .top])
-            Text("Flight number: \(launch.flightNumber)")
-                .font(.headline)
-                .padding(.bottom)
-            Text("Date: \(launch.dateLocal)")
-                .font(.headline)
-                .padding(.bottom)
-            Text(launch.details ?? "")
+        ZStack{
+            LinearGradient(colors: [.white, .blue, .black], startPoint: .leading, endPoint: .bottomTrailing)
+                .edgesIgnoringSafeArea(.all)
+            VStack{
+                Image(launch.links.patch?.large ?? "")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 100)
+                Text(launch.name)
+                    .font(.title)
+                    .padding([.bottom, .top])
+                Text("Flight number: \(launch.flightNumber)")
+                    .font(.headline)
+                    .padding(.bottom)
+                Text("Date: \(launch.dateLocal)")
+                    .font(.headline)
+                    .padding(.bottom)
+                Text(launch.details ?? "")
+                    .padding()
+                Spacer()
+            }
         }
     }
 }
