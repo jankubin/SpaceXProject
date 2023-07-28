@@ -14,10 +14,14 @@ struct DetailView: View {
     var body: some View {
         VStack{
             if let large = launch.links.patch.large {
-                Image(large)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 100)
+                AsyncImage(url: URL(string: large)) { image in
+                    image.resizable()
+                } placeholder: {
+                    Color.gray.opacity(0.3)
+                }
+                .scaledToFit()
+                .frame(height: 100)
+                .clipShape(RoundedRectangle(cornerRadius: 5))
             }
             Text(launch.name)
                 .font(.title)
