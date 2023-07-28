@@ -20,8 +20,8 @@ struct Links: Hashable, Codable {
 }
 
 struct Patch: Hashable, Codable {
-    let small: String
-    let large: String
+    let small: String?
+    let large: String?
 }
 
 class ViewModel: ObservableObject {
