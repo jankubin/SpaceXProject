@@ -16,10 +16,16 @@ struct DetailView: View {
             LinearGradient(colors: [.white, .blue, .black], startPoint: .leading, endPoint: .bottomTrailing)
                 .edgesIgnoringSafeArea(.all)
             VStack{
-                Image(launch.links.patch?.large ?? "")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 100)
+                if let large = launch.links.patch?.large  {
+                                AsyncImage(url: URL(string: large)) { image in
+                                    image.resizable()
+                                } placeholder: {
+                                    Color.gray.opacity(0.3)
+                                }
+                                .scaledToFit()
+                                .frame(height: 100)
+                                .clipShape(RoundedRectangle(cornerRadius: 5))
+                            }
                 Text(launch.name)
                     .font(.title)
                     .padding([.bottom, .top])
